@@ -1,0 +1,19 @@
+[package]
+name = "kernel"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "kernel"
+path = "src/main.rs"
+
+[dependencies]
+bootloader_api = "0.11.11"
+spin = "0.9"
+x86_64 = "0.15"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"

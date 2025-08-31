@@ -1,0 +1,32 @@
+# ---- Rust/Cargo ----
+/target
+**/target
+**/*.rs.bk
+
+# Cargo registry/cache info (rarely present in repo root)
+/.cargo/.crates.toml
+/.cargo/.crates2.json
+
+# ---- Boot images (runner output) ----
+# (Usually inside target/, but ignore here too in case you copy them out)
+*.img
+*.iso
+
+# ---- QEMU logs/state ----
+qemu.log
+*.lock
+*.tmp
+
+# ---- Editors/OS cruft ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+
+# ---- Optional: Cargo.lock policy ----
+# For binary apps/workspaces it's recommended to COMMIT Cargo.lock.
+# Uncomment to ignore only if you're publishing a *library* crate.
+# Cargo.lock
