@@ -8,7 +8,8 @@ You’ll build a two-crate Cargo workspace:
 
 > Why this setup? It avoids the legacy `bootimage` tool and works cleanly with current Rust/nightly and QEMU.
 
----
+There is more comprehensive explanation for bare metal setup: [Writing an OS in Rust Philipp Oppermann's blog](https://os.phil-opp.com/freestanding-rust-binary/).
+I believe ChatGPT must have referred to the blog.
 
 ## 1) Prerequisites (once per machine)
 
@@ -264,7 +265,7 @@ cargo run -p runner
 
 - If **OVMF** is installed (or you set `OVMF_PATH=/path/to/OVMF_CODE.fd`), the runner uses **UEFI** and you’ll see a colored rectangle.
 - Without OVMF, it falls back to **BIOS** (still framebuffer in most cases), and you should still see a rectangle.
-- **Headless** mode (useful on servers):  
+- **Headless** mode (useful on servers):
   ```bash
   QEMU_HEADLESS=1 cargo run -p runner
   ```
@@ -276,11 +277,14 @@ cargo run -p runner
 
 **Cargo says**: `artifact = … requires -Z bindeps`  
 → Ensure **root** `.cargo/config.toml` has:
+
 ```toml
 [unstable]
 bindeps = true
 ```
+
 …and you’re on nightly (`cargo -V` shows “nightly”). If needed, try:
+
 ```bash
 cargo +nightly run -Z bindeps -p runner
 ```
@@ -291,9 +295,11 @@ Also confirm your QEMU install: `qemu-system-x86_64 --version`.
 
 **I have OVMF installed but UEFI isn’t used**  
 → Set the OVMF path explicitly when running:
+
 ```bash
 OVMF_PATH=/usr/share/OVMF/OVMF_CODE.fd cargo run -p runner
 ```
+
 (Your distro’s path may differ.)
 
 **No visible text output from kernel**  

@@ -9,8 +9,8 @@ path = "src/main.rs"
 
 [dependencies]
 bootloader_api = "0.11.11"
-spin = "0.9"
 x86_64 = "0.15"
+spin = "0.9"
 
 [profile.dev]
 panic = "abort"
